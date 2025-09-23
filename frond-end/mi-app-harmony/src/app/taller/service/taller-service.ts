@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of, Subject } from 'rxjs';
 import { Taller } from '../interface/taller.interface';
 import { TallerCreateDto, TallerDto } from '../dto/taller.dto';
 
@@ -9,9 +9,15 @@ import { TallerCreateDto, TallerDto } from '../dto/taller.dto';
 })
 export class TallerService {
 
+
   private baseUrl: string = 'http://localhost:8080/api/talleres'
 
-  constructor(private httpCliente: HttpClient) {}
+  constructor(private httpCliente: HttpClient) { }
+
+  private talleresUpdated = new Subject<void>();
+  talleresUpdated$ = this.talleresUpdated.asObservable();
+
+
 
   //retorna todas los talleres
   getTalleres(): Observable<Taller[]> {
@@ -33,7 +39,7 @@ export class TallerService {
 
   //actualiza un taller
   updateTaller(taller: Taller): Observable<Taller> {
-    if(!taller.id)
+    if (!taller.id)
       throw Error('Id taller es requerido');
     return this.httpCliente.put<Taller>(`${this.baseUrl}/${taller.id}`, taller)
   }
@@ -46,4 +52,9 @@ export class TallerService {
         map(resp => true), //si todo anda bien devolvera true
       );
   }
+
+  emitUpdate() {
+    this.talleresUpdated.next();
+  }
+
 }

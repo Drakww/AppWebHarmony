@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './taller-list-page.html',
   styles: ``
 })
-export class TallerListPage implements OnInit{
+export class TallerListPage implements OnInit {
   //declaramos un array vacio para talleres
   public talleres: Taller[] = [];
 
@@ -20,24 +20,35 @@ export class TallerListPage implements OnInit{
   constructor(
     private tallerService: TallerService,
     private router: Router
-  ) {}
+  ) { }
+
 
   //Haremos que se encargue de la lista de talleres al iniciar el componente
   ngOnInit(): void {
+    this.cargarDatos();
+
     //para que se dispare el metodo, usamos subscribe
-    this.tallerService.getTalleres().subscribe(taller => this.talleres = taller);
+    this.tallerService.talleresUpdated$.subscribe(() => {
+      this.cargarDatos();
+    });
   }
 
-  deleteById(id: number): void {
-    this.tallerService.deleteTallerById(id).subscribe(valor => {
-      //mostrar el mensaje y dirigirse a /taller/list
-      this.router.navigate(['/taller/list']);
-      if(confirm("Desea Eliminar!") == true){
-        alert('Taller eliminado!')
-      }
+  cargarDatos(): void {
+    this.tallerService.getTalleres().subscribe(talleres => {
+      this.talleres = talleres;
     })
+  };
+
+    deleteById(id: number): void {
+      this.tallerService.deleteTallerById(id).subscribe(valor => {
+        //mostrar el mensaje y dirigirse a /taller/list
+        this.router.navigate(['/taller/list']);
+        if (confirm("Desea Eliminar!") == true) {
+          alert('Taller eliminado!')
+        }
+      })
+    }
+
+
+
   }
-
-
-
-}

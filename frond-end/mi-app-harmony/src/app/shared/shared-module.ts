@@ -4,6 +4,7 @@ import { Error404Page } from './pages/error404-page/error404-page';
 import { Header } from './components/header/header/header';
 import { Footer } from './components/footer/footer/footer';
 import { Sidebar } from './components/sidebar/sidebar/sidebar';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -15,7 +16,8 @@ import { Sidebar } from './components/sidebar/sidebar/sidebar';
     Sidebar
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
     Error404Page,

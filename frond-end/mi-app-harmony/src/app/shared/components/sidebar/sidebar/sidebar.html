@@ -1,4 +1,4 @@
-<div class="d-flex flex-column vh-100 border-start bg-light shadow-sm position-fixed start-0" style="width: 240px;">
+<div class="d-flex flex-column vh-100 border-end bg-white shadow-sm position-fixed start-0" style="width: 240px;">
   <!-- Logo / Título -->
   <div class="p-3 border-bottom">
     <h5 class="mb-0 fw-bold text-dark">Panel</h5>
@@ -6,31 +6,36 @@
 
   <!-- Menú -->
   <nav class="nav flex-column p-3">
-    <a class="nav-link d-flex align-items-center text-dark rounded py-2 px-3 mb-2"
-       href="/dashboard/estudiantes/list">
+    <a routerLink="/dashboard/estudiantes/list"
+       routerLinkActive="active"
+       class="nav-link d-flex align-items-center rounded py-2 px-3 mb-2 text-dark">
       <i class="bi bi-people me-2"></i> Estudiantes
     </a>
 
-    <a class="nav-link d-flex align-items-center text-dark rounded py-2 px-3 mb-2"
-       href="/panel/productos">
+    <a routerLink="/panel/productos"
+       routerLinkActive="active"
+       class="nav-link d-flex align-items-center rounded py-2 px-3 mb-2 text-dark">
       <i class="bi bi-person-workspace me-2"></i> Profesores
     </a>
 
-    <a class="nav-link d-flex align-items-center text-dark rounded py-2 px-3 mb-2"
-       href="/dashboard/taller/">
+    <a routerLink="/dashboard/taller"
+       routerLinkActive="active"
+       class="nav-link d-flex align-items-center rounded py-2 px-3 mb-2 text-dark">
       <i class="bi bi-music-note-list me-2"></i> Talleres
     </a>
 
-    <a class="nav-link d-flex align-items-center text-dark rounded py-2 px-3"
-       href="/panel/configuracion">
+    <a routerLink="/panel/configuracion"
+       routerLinkActive="active"
+       class="nav-link d-flex align-items-center rounded py-2 px-3 text-dark">
       <i class="bi bi-gear me-2"></i> Configuración
     </a>
   </nav>
 
   <!-- Footer -->
   <div class="mt-auto p-3 border-top">
-    <a class="nav-link text-danger fw-semibold d-flex align-items-center" href="/logout">
-      <i class="bi bi-box-arrow-right me-2"></i> Salir
-    </a>
-  </div>
+  <a routerLink="/"
+     class="nav-link exit fw-semibold d-flex align-items-center rounded py-2 px-3">
+    <i class="bi bi-box-arrow-right me-2"></i> Salir
+  </a>
+</div>
 </div>
