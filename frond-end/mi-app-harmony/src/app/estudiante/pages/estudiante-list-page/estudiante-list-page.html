@@ -1,0 +1,21 @@
+
+<h3 class="text-center">Lista de Personas</h3>
+<hr>
+<div class="grid bm-8">
+  @if(estudiantes){
+  <table class="table">
+    <tr>
+      <th>Id</th>
+      <th>Nombre</th>
+    </tr>
+    @for (estudiante of estudiantes; track estudiante.id) {
+    <tr>
+      <th>{{ estudiante.id}}</th>
+      <th>{{ estudiante.nombre}}</th>
+    </tr>
+    }@empty {
+      <td colspan="2" class="text-center">No hay estudiantes registrados.</td>
+    }
+  </table>
+  }
+</div>

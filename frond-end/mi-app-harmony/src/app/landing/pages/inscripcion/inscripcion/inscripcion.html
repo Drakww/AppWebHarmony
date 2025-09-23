@@ -1,0 +1,70 @@
+<main class="container my-5">
+  <!-- Título de la página -->
+  <h1 class="text-center mb-4">Formulario de Inscripción</h1>
+  <p class="text-center text-muted mb-5">Completa el formulario para reservar tu lugar en nuestros talleres.</p>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <!-- Tarjeta con el formulario -->
+      <div class="card p-4 shadow-sm" style="background-color: #f8f1e9;">
+        <form>
+          <!-- DATOS PERSONALES -->
+          <h4 class="mb-4">Datos Personales</h4>
+          <div class="mb-3">
+            <label for="nombres" class="form-label">Nombres</label>
+            <input type="text" class="form-control" id="nombre" placeholder="Ej: Juan Alex" required>
+          </div>
+          <div class="mb-3">
+            <label for="apellidos" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" id="nombre" placeholder="Ej: Pérez Romero" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" placeholder="ejemplo@correo.com" required>
+          </div>
+          <div class="mb-4">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="tel" class="form-control" id="telefono" placeholder="Ej: +51 921 340 064" required>
+          </div>
+
+          <hr>
+
+          <!-- DETALLES DEL TALLER -->
+          <h4 class="mb-4 mt-4">Detalles del Taller</h4>
+          <div class="mb-3">
+            <label for="taller" class="form-label">Selecciona el Taller</label>
+            <select class="form-select" id="taller" required>
+              <option selected disabled value="">Elige una opción...</option>
+              <option value="piano">Taller de Piano - S/150 al mes</option>
+              <option value="guitarra">Taller de Guitarra - S/180 al mes</option>
+              <option value="violin">Taller de Violín - S/200 al mes</option>
+              <option value="flauta">Taller de Flauta - S/160 al mes</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label for="horario" class="form-label">Selecciona el Horario</label>
+            <select class="form-select" id="horario" required>
+              <option selected disabled value="">Elige una opción...</option>
+              <option value="lun_mier_4pm">Lunes y Miércoles - 4:00 PM</option>
+              <option value="mar_jue_5pm">Martes y Jueves - 5:00 PM</option>
+              <option value="mier_vier_6pm">Miércoles y Viernes - 6:00 PM</option>
+            </select>
+          </div>
+
+          <!-- Aceptación de términos -->
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="terminos" required>
+            <label class="form-check-label" for="terminos">
+              Acepto los <a href="#" class="text-decoration-none">términos y condiciones</a>
+            </label>
+          </div>
+
+          <!-- Botón de envío -->
+          <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-dark btn-lg">Enviar Inscripción</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>

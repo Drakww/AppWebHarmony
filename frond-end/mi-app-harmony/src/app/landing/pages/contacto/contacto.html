@@ -1,0 +1,52 @@
+<main class="container my-5">
+  <!-- Título principal -->
+  <h1 class="text-center mb-4">Contáctanos</h1>
+  <p class="text-center text-muted mb-5">¡Estamos aquí para ayudarte! Completa el siguiente formulario o visítanos.</p>
+
+  <!-- Formulario de contacto -->
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card p-4 shadow-sm" style="background-color: #f8f1e9;">
+        <form>
+          <h4 class="mb-4">Envíanos un mensaje</h4>
+
+          <!-- Campo: Nombre -->
+          <div class="mb-3">
+            <label for="nombre-contacto" class="form-label">Nombre Completo</label>
+            <input type="text" class="form-control" id="nombre-contacto" placeholder="Tu nombre" required>
+          </div>
+
+          <!-- Campo: Email -->
+          <div class="mb-3">
+            <label for="email-contacto" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email-contacto" placeholder="ejemplo@correo.com" required>
+          </div>
+
+          <!-- Campo: Asunto -->
+          <div class="mb-3">
+            <label for="asunto-contacto" class="form-label">Asunto</label>
+            <select class="form-select" id="asunto-contacto" required>
+              <option selected disabled value="">Selecciona un asunto...</option>
+              <option value="informacion_talleres">Información sobre talleres/cursos</option>
+              <option value="inscripcion">Pregunta sobre la inscripción</option>
+              <option value="profesores">Consulta sobre un profesor</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+
+          <!-- Campo: Mensaje -->
+          <div class="mb-4">
+            <label for="mensaje-contacto" class="form-label">Mensaje</label>
+            <textarea class="form-control" id="mensaje-contacto" rows="5" placeholder="Escribe tu mensaje aquí..."
+              required></textarea>
+          </div>
+
+          <!-- Botón enviar -->
+          <div class="d-grid">
+            <button type="submit" class="btn btn-dark btn-lg">Enviar Mensaje</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>

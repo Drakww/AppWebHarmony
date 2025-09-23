@@ -1,0 +1,43 @@
+<h3 class="text-center">Lista de Talleres</h3>
+<hr>
+
+<div class="grid bm-8">
+  @if(talleres){
+    <table class="table table-striped table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Nivel</th>
+          <th scope="col">Precio</th>
+          <th scope="col" class="text-center">Opciones</th>
+        </tr>
+      </thead>
+
+      @for (taller of talleres; track taller.id) {
+        <tbody>
+          <tr>
+            <th scope="row">{{taller.id}}</th>
+            <td>{{taller.nombre}}</td>
+            <td>{{taller.descripcion}}</td>
+            <td>{{taller.nivel}}</td>
+            <td>{{taller.precio}}</td>
+            <td class="text-center">
+              <div class="d-flex justify-content-center gap-2">
+                <button class="btn btn-success btn-sm" routerLink="/dashboard/taller/edit/{{taller.id}}">
+                  <i class="bi bi-pencil-fill"></i> Editar
+                </button>
+                <button class="btn btn-danger btn-sm" (click)="deleteById(taller.id)">
+                  <i class="bi bi-trash-fill"></i> Eliminar
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      }
+    </table>
+  }
+</div>
+<router-outlet></router-outlet>
+

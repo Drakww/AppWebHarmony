@@ -1,0 +1,131 @@
+/*CSS para index*/
+.perfil-icon{
+  font-size: 23px;
+  color: #9FA0A1
+}
+
+.seccion-hero {
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+    background-color: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+.contenido-hero {
+    z-index: 1;
+}
+.capa-hero {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+.banner-negro {
+    background-color: black;
+    color: white;
+    padding: 3rem 0;
+}
+.tarjeta-taller {
+    position: relative;
+    overflow: hidden;
+    border: none;
+}
+.tarjeta-taller img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+.tarjeta-taller:hover img {
+    transform: scale(1.05);
+}
+.tarjeta-taller .card-img-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.tarjeta-taller:hover .card-img-overlay {
+    opacity: 1;
+}
+
+
+/*CSS para el header*/
+.header-personalizado {
+    background-color: #f8f9fa;
+}
+.header-personalizado .nav-link {
+    color: #212529 !important;
+}
+
+.header-personalizado .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.header-personalizado .h4 {
+    color: #212529 !important;
+}
+
+.login-wrapper{
+  position: relative;
+  background: url("assets/images/FondoLogin.png") no-repeat center center;
+  background-size: cover;
+}
+
+.login-wrapper .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.overlay {
+  margin-left: 240px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 87.5%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+.modal-box {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.2);
+}
+
+
+/* Media Query*/
+@media (min-width: 1200px) { /* pantallas grandes (xl) */
+  .perfil-icon {
+    font-size: 30px;
+  }
+}

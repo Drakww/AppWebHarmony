@@ -1,0 +1,74 @@
+<div class="overlay">
+  <div class="card shadow-lg border-0 rounded-4 p-4 modal-box" style="max-width: 500px; margin: auto;">
+    <div class="card-body">
+      <h4 class="card-title text-center mb-4 fw-bold text-primary">
+        {{ getCurrentTaller().id > 0 ? 'Editar Taller' : 'Nuevo Taller' }}
+      </h4>
+
+      <form [formGroup]="tallerForm" (ngSubmit)="onSubmit()">
+        <!-- Nombre -->
+        <div class="mb-3">
+          <label for="nombre" class="form-label fw-semibold">Nombre del Taller</label>
+          <input
+            type="text"
+            formControlName="nombre"
+            class="form-control form-control-lg rounded-3"
+            id="nombre"
+            placeholder="Ej. Taller de música"
+          />
+        </div>
+
+        <!-- Descripción -->
+        <div class="mb-3">
+          <label for="descripcion" class="form-label fw-semibold">Descripción</label>
+          <textarea
+            formControlName="descripcion"
+            class="form-control rounded-3"
+            id="descripcion"
+            rows="3"
+            placeholder="Breve descripción del taller"
+          ></textarea>
+        </div>
+
+        <!-- Nivel -->
+        <div class="mb-3">
+          <label for="nivel" class="form-label fw-semibold">Nivel</label>
+          <select formControlName="nivel" class="form-select form-select-lg rounded-3" id="nivel">
+            <option value="Basico">Básico</option>
+            <option value="Intermedio">Intermedio</option>
+            <option value="Avanzado">Avanzado</option>
+          </select>
+        </div>
+
+        <!-- Precio -->
+        <div class="mb-3">
+          <label for="precio" class="form-label fw-semibold">Precio</label>
+          <div class="input-group input-group-lg">
+            <span class="input-group-text rounded-start-3">S/</span>
+            <input
+              formControlName="precio"
+              type="number"
+              class="form-control rounded-end-3"
+              id="precio"
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+            />
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="d-flex justify-content-end gap-2 mt-4">
+          <button type="submit" class="btn btn-primary px-4 rounded-3">
+            Guardar
+          </button>
+          <button type="button" class="btn btn-outline-secondary px-4 rounded-3" [routerLink]="['/dashboard/taller']">
+            Cancelar
+          </button>
+        </div>
+      </form>
+
+      <pre>{{ getCurrentTaller() | json }}</pre>
+    </div>
+  </div>
+</div>
