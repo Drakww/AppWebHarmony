@@ -61,7 +61,10 @@ export class TallerNewPage implements OnInit {
       this.tallerService.updateTaller(this.getCurrentTaller()) //para que se dispare o ejecute debe agregar subscribe -> esto por observable
         .subscribe(taller => {
           //mostrar mensaje
-          this.showMessage(`${taller.nombre} actualizado correctamente 😎!`)
+          this.tallerService.emitUpdate();
+          this.router.navigate(['/dashboard/taller']);
+          this.showMessage(`${taller.nombre} actualizado correctacorrectamente 😎!mente 😎!`)
+
         })
       return;
     }

@@ -46,9 +46,7 @@ export class TallerListPage implements OnInit {
         if (confirm("Desea Eliminar!") == true) {
           alert('Taller eliminado!')
         }
+        this.tallerService.emitUpdate();
       })
     }
-
-
-
   }

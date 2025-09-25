@@ -5,6 +5,7 @@ import { EstudianteRoutingModule } from './estudiante-routing-module';
 import { EstudianteLayoutPage } from './pages/estudiante-layout-page/estudiante-layout-page';
 import { EstudianteListPage } from './pages/estudiante-list-page/estudiante-list-page';
 import { EstudianteNewPage } from './pages/estudiante-new-page/estudiante-new-page';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,8 @@ import { EstudianteNewPage } from './pages/estudiante-new-page/estudiante-new-pa
   imports: [
     CommonModule,
     EstudianteRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class EstudianteModule { }

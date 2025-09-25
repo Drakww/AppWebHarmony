@@ -11,11 +11,13 @@ const routes: Routes = [
     component: EstudianteLayoutPage,
     children: [
       {
-        path: 'list', component:EstudianteListPage
+        path: '',
+        component:EstudianteListPage,
+        children: [
+          { path: 'new', component: EstudianteNewPage },
+          { path: 'edit/:id', component: EstudianteNewPage }
+        ]
       },
-      {
-        path:'new', component: EstudianteNewPage
-      }
     ]
   }
 ];

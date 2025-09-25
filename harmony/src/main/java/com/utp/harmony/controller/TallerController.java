@@ -44,7 +44,7 @@ public class TallerController {
         Taller taller = this.tallerService.buscarTallerPorId(id);
         if(taller != null) {
             return ResponseEntity.ok(taller);
-        }else {
+        } else {
             throw new RecursoNoEncontradoExcepcion("No se encontró el id: " + id);
         }
     }

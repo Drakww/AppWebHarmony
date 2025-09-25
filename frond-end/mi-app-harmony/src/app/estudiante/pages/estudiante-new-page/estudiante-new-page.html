@@ -1,1 +1,83 @@
-<p>estudiante-new-page works!</p>
+<div class="overlay">
+  <div class="card shadow-lg border-0 rounded-4 p-4 modal-box" style="max-width: 500px; margin: auto;">
+    <div class="card-body">
+      <h4 class="card-title text-center mb-4 fw-bold text-primary">
+        {{ getCurrentEstudiante().id > 0 ? 'Editar Estudiante' : 'Nuevo Estudiante' }}
+      </h4>
+
+      <form [formGroup]="estudianteForm" (ngSubmit)="onSubmit()">
+        <!-- Nombre -->
+        <div class="mb-3">
+          <label for="nombre" class="form-label fw-semibold">Nombre del Estudiante</label>
+          <input
+            type="text"
+            formControlName="nombre"
+            class="form-control form-control-lg rounded-3"
+            id="nombre"
+            placeholder="Ej. Juan Carlos"
+          />
+        </div>
+
+        <!-- Apellido -->
+        <div class="mb-3">
+          <label for="apellido" class="form-label fw-semibold">Apellido del Estudiante</label>
+          <input
+            type="text"
+            formControlName="apellido"
+            class="form-control form-control-lg rounded-3"
+            id="apellido"
+            placeholder="Ej. Ramirez Horlen"
+          />
+        </div>
+
+        <!-- Edad -->
+        <div class="mb-3">
+          <label for="edad" class="form-label fw-semibold">Edad</label>
+          <input
+            type="number"
+            formControlName="edad"
+            class="form-control form-control-lg rounded-3"
+            id="edad"
+            placeholder="14"
+          />
+        </div>
+
+        <!-- Correo -->
+        <div class="mb-3">
+          <label for="correo" class="form-label fw-semibold">Correo</label>
+          <input
+            type="email"
+            formControlName="correo"
+            class="form-control form-control-lg rounded-3"
+            id="correo"
+            placeholder="ejemplo@ejemplo.com"
+          />
+        </div>
+
+        <!-- Telefono -->
+        <div class="mb-3">
+          <label for="telefono" class="form-label fw-semibold">Telefono</label>
+          <input
+            type="number"
+            formControlName="telefono"
+            class="form-control form-control-lg rounded-3"
+            id="Telefono"
+            placeholder="98473847"
+          />
+        </div>
+
+        <!-- Botones -->
+        <div class="d-flex justify-content-end gap-2 mt-4">
+          <button type="submit" class="btn btn-primary px-4 rounded-3">
+            Guardar
+          </button>
+          <button type="button" class="btn btn-outline-secondary px-4 rounded-3" [routerLink]="['/dashboard/taller']">
+            Cancelar
+          </button>
+        </div>
+      </form>
+
+      <pre>{{ getCurrentEstudiante() | json }}</pre>
+    </div>
+  </div>
+</div>
