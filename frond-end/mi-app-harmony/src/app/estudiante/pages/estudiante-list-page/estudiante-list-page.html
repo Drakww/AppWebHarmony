@@ -1,4 +1,7 @@
-<h3 class="text-center">Lista de Talleres</h3>
+<div class="">
+  <h3 class="text-center">Lista de Estudiantes</h3>
+  <button class="btn btn-primary" (click)="openModal()">Nuevo</button>
+</div>
 <hr>
 
 <div class="grid bm-8">
@@ -27,7 +30,7 @@
             <td>{{estudiante.telefono}}</td>
             <td class="text-center">
               <div class="d-flex justify-content-center gap-2">
-                <button class="btn btn-success btn-sm" routerLink="/dashboard/estudiante/edit/{{estudiante.id}}">
+                <button class="btn btn-success btn-sm" (click)="openModal(estudiante)">
                   <i class="bi bi-pencil-fill"></i> Editar
                 </button>
                 <button class="btn btn-danger btn-sm" (click)="deleteById(estudiante.id)">

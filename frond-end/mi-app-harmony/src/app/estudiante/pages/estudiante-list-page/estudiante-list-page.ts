@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EstudianteResponse } from '../../interface/estudiante.interface';
 import { EstudianteService } from '../../services/estudiante-service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EstudianteNewPage } from '../estudiante-new-page/estudiante-new-page';
+import { ConfirmModal } from '../../../shared/components/confirm-modal/confirm-modal';
 
 @Component({
   selector: 'app-estudiante-list-page',
@@ -14,7 +17,8 @@ export class EstudianteListPage implements OnInit{
 
   //inyectamos la dependencia del servicio
   constructor(
-    private estudianteService: EstudianteService
+    private estudianteService: EstudianteService,
+    private modalService: NgbModal
   ) { }
 
   //haremos que se cargue la lista de etudiante al iniciar el componente
@@ -27,6 +31,19 @@ export class EstudianteListPage implements OnInit{
     });
   }
 
+  //Abrir modal
+  openModal(estudiante?: EstudianteResponse) {
+    const modalRef = this.modalService.open(EstudianteNewPage, {size: 'md'});
+    modalRef.componentInstance.estudiante = estudiante; //si viene, es edicion
+
+    modalRef.closed.subscribe(result => {
+      if(result === 'saved') {
+        this.cargarDatos();
+      }
+    })
+
+  }
+
   cargarDatos(): void {
     this.estudianteService.getEstudiantes().subscribe(estudiantes => {
       this.estudiantes = estudiantes;
@@ -34,14 +51,23 @@ export class EstudianteListPage implements OnInit{
   }
 
   deleteById(id: number): void {
-    this.estudianteService.deleteEstudianteId(id).subscribe(valor => {
-      //mostrar el mensaje y dirigirse a /estudiante/list
-      if(confirm("Desea Eliminar!") == true) {
-        alert('Estudiante eliminado!');
-      }
-      this.estudianteService.emitUpdate();
-    })
+    const modalRef = this.modalService.open(ConfirmModal, {centered: true});
+    modalRef.componentInstance.tittle = 'Eliminar estudiante';
+    modalRef.componentInstance.message = '¿Desa eliminar este estudiante?';
+    modalRef.componentInstance.confirmText = 'Eliminar';
+    modalRef.componentInstance.cancelText = 'Cancelar';
 
+    modalRef.result.then(
+      (result) => {
+        if(result) {
+          this.estudianteService.deleteEstudianteId(id).subscribe(()=> {
+            //Aqui falta agregar un eliminado de estudiante  como "alert"
+            console.log('Estudiante eliminado');
+            this.estudianteService.emitUpdate();
+          });
+        }
+      },
+      () => {}
+    )
   }
-
 }

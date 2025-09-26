@@ -1,86 +1,66 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EstudianteService } from '../../services/estudiante-service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+
 import { EstudianteResponse } from '../../interface/estudiante.interface';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-estudiante-new-page',
   standalone: false,
   templateUrl: './estudiante-new-page.html',
-  styles: ``
 })
-export class EstudianteNewPage implements OnInit{
+export class EstudianteNewPage implements OnInit {
 
-  public estudianteForm = new FormGroup({
-    id: new FormControl(0),
-    nombre: new FormControl(''),
-    apellido: new FormControl(''),
-    edad: new FormControl(''),
-    correo: new FormControl(''),
-    telefono: new FormControl('')
-  });
+  @Input() estudiante?: EstudianteResponse; // si viene, es edición
+  isEdit = false;
+
+  public estudianteForm!: FormGroup;
 
   constructor(
     private estudianteService: EstudianteService,
-    private activedRouted: ActivatedRoute,
-    private router: Router
+     public activeModal: NgbActiveModal,
   ) {}
 
   ngOnInit(): void {
-    if(!this.router.url.includes('edit')) return;
+    this.isEdit = !!this.estudiante;
 
-    this.activedRouted.params
-    .pipe(
-      switchMap(({ id }) => this.estudianteService.getEstudianteById(id)),
-    )
-    .subscribe(estudiante => {
-      //si no existe hay que sacarlo
-      if(!estudiante) return this.router.navigateByUrl('/');
-
-      this.estudianteForm.reset(estudiante);
-      return;
-    })
-  }
-
-  getCurrentEstudiante(): EstudianteResponse {
-    const e = this.estudianteForm.value as EstudianteResponse;
-    return e;
+    this.estudianteForm = new FormGroup({
+      id: new FormControl(this.estudiante?.id || 0),
+      nombre: new FormControl(this.estudiante?.nombre || '', [Validators.required, Validators.minLength(3)]),
+      apellido: new FormControl(this.estudiante?.apellido || '', [Validators.required]),
+      edad: new FormControl(this.estudiante?.edad || '', [Validators.required, Validators.min(1)]),
+      correo: new FormControl(this.estudiante?.correo || '', [Validators.required, Validators.email]),
+      telefono: new FormControl(this.estudiante?.telefono || '', [Validators.required]),
+    });
   }
 
   onSubmit(): void {
-    //console.log({
-    //  formIsValid: this.estudianteForm.valid,
-    //  value: this.estudianteForm.value,
-    //});
-    if(this.estudianteForm.invalid) return;
+    if (this.estudianteForm.invalid) return;
 
-    if(this.getCurrentEstudiante().id || this.getCurrentEstudiante().id > 0) {
-      this.estudianteService.updateEstudiante(this.getCurrentEstudiante())
-      .subscribe(estudiante => {
-        //mostrar mensaje
+
+    const formValue: EstudianteResponse = this.estudianteForm.value as EstudianteResponse;
+
+    if (this.isEdit && this.estudiante?.id) {
+      // Actualizar
+      this.estudianteService.updateEstudiante(formValue).subscribe(() => {
         this.estudianteService.emitUpdate();
-        this.router.navigate(['/dashboard/estudiantes']);
-        this.showMessage(`${estudiante.nombre} actualizado correctamente 😎!` )
-      })
-      return;
-    }
+        this.activeModal.close('update!');
 
-    const {id, ...estudianteCreate} = this.getCurrentEstudiante();
-
-    this.estudianteService.addEstudiante(estudianteCreate)
-      .subscribe(estudiante => {
-        this.estudianteService.emitUpdate();
-        this.router.navigate(['/dashboard/estudiantes']);
-        //mostrar el mensaje y dirigirse a /dashboard/estudiantes
-        this.showMessage(`${estudiante.nombre} created!`);
       });
-      this.estudianteForm.reset();
+    } else {
+      // Crear
+      const {id, ...data} = formValue;
+      this.estudianteService.addEstudiante(data).subscribe(() => {
+        this.activeModal.close('created'); // 👈 cerramos modal al guardar
+        this.estudianteService.emitUpdate();
+      });
+    }
   }
 
-  showMessage(message: string) {
-    alert(message);
+  onCancel(): void {
+    this.activeModal.dismiss('cancel'); // 👈 cerramos modal al cancelar
   }
-
 }
+

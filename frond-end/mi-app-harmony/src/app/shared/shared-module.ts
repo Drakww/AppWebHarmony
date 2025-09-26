@@ -5,6 +5,8 @@ import { Header } from './components/header/header/header';
 import { Footer } from './components/footer/footer/footer';
 import { Sidebar } from './components/sidebar/sidebar/sidebar';
 import { RouterModule } from '@angular/router';
+import { ConfirmModal } from './components/confirm-modal/confirm-modal';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -13,17 +15,20 @@ import { RouterModule } from '@angular/router';
     Error404Page,
     Header,
     Footer,
-    Sidebar
+    Sidebar,
+    ConfirmModal
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    NgbModalModule
   ],
   exports: [
     Error404Page,
     Header,
     Footer,
-    Sidebar
+    Sidebar,
+    ConfirmModal
   ]
 })
 export class SharedModule { }

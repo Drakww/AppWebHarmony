@@ -4,6 +4,7 @@ import com.utp.harmony.model.Estudiante;
 import com.utp.harmony.repository.EstudianteRepository;
 import com.utp.harmony.service.IEstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,9 +15,10 @@ public class EstudianteService implements IEstudianteService {
     @Autowired
     private EstudianteRepository estudianteRepository;
 
+
     @Override
     public List<Estudiante> listarEstudiantes() {
-        return this.estudianteRepository.findAll();
+        return this.estudianteRepository.findAllByOrderByIdAsc();
     }
 
     @Override
